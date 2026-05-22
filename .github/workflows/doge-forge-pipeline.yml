@@ -1,0 +1,21 @@
+# DogeForge CI/CD Extension
+name: 🚀 DogeForge Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests flask
+      - name: Test DogeForge Payments
+        run: python -c "from doge_forge.payments import DogePayments; print('Doge payments ready')"
+      - name: Deploy (add your target here)
+        run: echo 'Deployed via Grok conversational CI/CD!'
