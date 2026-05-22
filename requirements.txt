@@ -1,0 +1,5 @@
+xai-sdk
+requests
+fastapi
+uvicorn
+python-dotenv
