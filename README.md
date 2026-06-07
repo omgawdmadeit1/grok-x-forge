@@ -26,3 +26,8 @@ Star this repo if you want to 10x your X income.
 3. Watch Grok push code + deploy
 
 Made with Grok + omgawdmadeit1
+
+---
+**Self-Improver layer (this PR)**: The ForgeSelfImproverAgent (via /self-improve + propose_improvement) used grok_com_github MCPs to open this branch, document the UEFN orchestrator wiring + deeper real-time MCP polling in UI + edge enhancements, and create the PR. Recursive agent-driven development in action.
+
+See also: server.py (new /self-improve + enhanced /uefn/orchestrate + richer /mcp-events), vitapass/index.html (JS polling + live feed + runUefnOrchestrator), doge_forge/agents/forge_self_improver.py (propose_improvement method), vitapass-deploy/* (edge parity).
