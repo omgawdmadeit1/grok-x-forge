@@ -28,13 +28,13 @@ python launch.py
 
 This starts the **incredible new VitaPass Full Power experience** at `http://localhost:8000` (the masterpiece built with the full Grok skill + plugin stack).
 
-**Stacked state**: 17+ agents (auto + hot-reload on mint), Evolve persists real versioned .py + registers live, Forge OS 6-tab dashboard with MCP activity, real Linear MCP side-effects, rich UEFN multi-agent teams, deploy artifact in vitapass-deploy/ ready for Cloudflare/GitHub.
+**Stacked state**: 17+ agents (auto + hot-reload on mint), Evolve persists real versioned .py + registers live, Forge OS 6-tab dashboard with MCP activity, real Linear MCP side-effects, rich UEFN multi-agent teams, deploy artifact in vitapass-deploy/ ready.
 
 **Latest: more agents + more UEFN content**
 - 4 new agents: uefn-verse-crafter (55 DOGE), doge-economy-analyst, thread-optimizer, mcp-activity-monitor
-- Expanded UEFN orchestrator with full 7 roles, per-role Verse generation, island settings, full content package
-- Server and UI updated to expose and render the richer UEFN experience
-- Edge deploy ready in vitapass-deploy/
+- Expanded UEFN orchestrator with full 7-role tasks + per-role Verse samples, island settings, full content package
+- Server /uefn/orchestrate + UI now expose and render the richer content
+- New specialist agent tied to the orchestrator
 
 `python launch.py` delivers the continuously expanding VitaPass GrokX Forge.
 
@@ -42,6 +42,8 @@ This starts the **incredible new VitaPass Full Power experience** at `http://loc
 - Classic: /classic
 - API: /docs
 
-Deployed versions:
-- GitHub: see PR for this feature
-- Cloudflare: vitapass-full-power.pages.dev (static + /forge edge)
+### Deployments
+- **GitHub**: https://github.com/omgawdmadeit1/grok-x-forge/pull/4 (branch feat/more-agents-more-uefn-content)
+- **Cloudflare**: Artifact in vitapass-deploy/ ready for `npx wrangler pages deploy . --project-name vitapass-full-power` (requires CLOUDFLARE_API_TOKEN). Edge /forge + static UI.
+
+See vitapass-deploy/wrangler.toml for exact commands and the separate Worker option.
