@@ -28,22 +28,36 @@ python launch.py
 
 This starts the **incredible new VitaPass Full Power experience** at `http://localhost:8000` (the masterpiece built with the full Grok skill + plugin stack).
 
-**Stacked state**: 17+ agents (auto + hot-reload on mint), Evolve persists real versioned .py + registers live, Forge OS 6-tab dashboard with MCP activity, real Linear MCP side-effects, rich UEFN multi-agent teams, deploy artifact in vitapass-deploy/ ready.
+**Current state (more agents + more UEFN content)**: 17+ agents, full 7-role UEFN orchestrator with per-role Verse generation, live MCP feed, self-improver that actually ships PRs via MCPs, edge-ready deploy artifact.
 
-**Latest: more agents + more UEFN content**
-- 4 new agents: uefn-verse-crafter (55 DOGE), doge-economy-analyst, thread-optimizer, mcp-activity-monitor
-- Expanded UEFN orchestrator with full 7-role tasks + per-role Verse samples, island settings, full content package
-- Server /uefn/orchestrate + UI now expose and render the richer content
-- New specialist agent tied to the orchestrator
+`python launch.py` delivers everything.
 
-`python launch.py` delivers the continuously expanding VitaPass GrokX Forge.
+---
 
-- Full UI: http://localhost:8000
-- Classic: /classic
-- API: /docs
+## Deployment
 
-### Deployments
-- **GitHub**: https://github.com/omgawdmadeit1/grok-x-forge/pull/4 (branch feat/more-agents-more-uefn-content)
-- **Cloudflare**: Artifact in vitapass-deploy/ ready for `npx wrangler pages deploy . --project-name vitapass-full-power` (requires CLOUDFLARE_API_TOKEN). Edge /forge + static UI.
+### GitHub (recommended)
+1. The repo has a GitHub Action (`.github/workflows/deploy-cloudflare-pages.yml`).
+2. Go to your repo → **Settings → Secrets and variables → Actions**.
+3. Add a **New repository secret**:
+   - Name: `CLOUDFLARE_API_TOKEN`
+   - Value: A token with `Pages:Edit` and `Workers:Edit` permissions (create at https://dash.cloudflare.com/profile/api-tokens).
+4. Push to `main` or the feature branch → it will auto-deploy to Cloudflare Pages project `vitapass-full-power`.
 
-See vitapass-deploy/wrangler.toml for exact commands and the separate Worker option.
+### Manual / Local deploy (Cloudflare Pages)
+```bash
+# One time: create token with Pages:Edit
+export CLOUDFLARE_API_TOKEN=your_token_here
+
+cd vitapass-deploy
+npx wrangler pages deploy . --project-name=vitapass-full-power
+```
+
+This deploys the beautiful static UI + Pages Functions for the edge `/forge` endpoint.
+
+After deploy you can set:
+```js
+window.FORGE_ENDPOINT = "https://<your-project>.pages.dev/forge"
+```
+
+The `vitapass-deploy/` directory is always kept in sync with the latest code in this repo.
