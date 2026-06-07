@@ -1,0 +1,16 @@
+name = "vitapass-full-power"
+pages_build_output_dir = "."
+
+# Clean Pages config for `wrangler pages deploy .`
+# Static UI + Functions for /forge edge (the beautiful VitaPass experience)
+
+# Deploy command:
+# cd vitapass-deploy
+# npx wrangler pages deploy . --project-name vitapass-full-power
+
+# For the separate Worker (optional, for direct /forge calls):
+# npx wrangler deploy worker.js --name vitapass-forge-worker --compatibility-date 2024-01-01
+# wrangler secret put XAI_API_KEY
+
+# In UI you can override:
+# window.FORGE_ENDPOINT = "https://vitapass-forge-worker.your-subdomain.workers.dev/forge"
