@@ -20,3 +20,14 @@ python launch.py
 # Use Forge -> Mint -> Watch .py auto-appear + dashboard + MCP side effects
 
 Ready for real user agents and prod deploys (Vercel/Cloudflare).
+
+## What actually landed (integration)
+
+The original expansion PR only committed this note. The integration branch now also ships:
+
+- Six real agents in `doge_forge/agents/` (shiller + community builder + four from PR #4)
+- `python launch.py` catalog + FastAPI (`/`, `/health`, `/agents`)
+- Cloudflare Pages artifact (`vitapass-deploy/`) and a root Worker (`worker.js`)
+- Pytest coverage for agents, marketplace, payments, and launch routes
+
+Still not in any open branch (documented intent only): Forge OS 6-tab dashboard, `server.py`, `uefn_forge/`, mint/evolve persistence, and the extra skill-powered agents named above.

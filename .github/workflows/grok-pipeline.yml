@@ -16,6 +16,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
-      - run: python -m pytest || echo "No tests yet - coming soon!"
+      - run: python -m pytest -q
+      - name: Catalog smoke
+        run: python launch.py --catalog-only
       - name: Notify Grok
         run: echo "Pipeline passed! Ready for next feature from Grok."
