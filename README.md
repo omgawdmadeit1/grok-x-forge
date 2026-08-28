@@ -13,21 +13,66 @@ No laptop required. Conversational CI/CD pipeline powered by Grok.
 ## Features
 - Grok as your CI/CD brain
 - Real-time X integration (trends, posting, analytics)
-- One-command deploy to Vercel/Railway
-- Monetization dashboard starter
+- One-command local catalog (`python launch.py`)
+- Transparent $DOGE agent marketplace
+- Cloudflare Pages + Workers deploy artifacts
 
 Built live with Grok while Joseph was away from computer.
 
-Star this repo if you want to 10x your X income.
+## Agent catalog (landed)
 
-## Quick Start
-1. Fork it
-2. Talk to Grok: "Add viral thread generator"
-3. Watch Grok push code + deploy
+These paid agents are in `doge_forge/agents/` and auto-register on launch:
+
+| Agent | Price | Role |
+| --- | ---: | --- |
+| `x-doge-shiller` | 42 DOGE | Viral Dogecoin / X shill threads |
+| `community-builder` | 22 DOGE | Welcome sequences, value threads, AMAs |
+| `doge-economy-analyst` | 27 DOGE | On-chain + marketplace economy intel |
+| `thread-optimizer` | 22 DOGE | Raw ideas → high-signal X threads |
+| `mcp-activity-monitor` | 33 DOGE | Linear / GitHub MCP activity → alpha threads |
+| `uefn-verse-crafter` | 55 DOGE | UEFN Verse snippets and island mechanics |
+
+## Launch it
+
+```bash
+python -m pip install -r requirements.txt
+python launch.py
+```
+
+This prints the catalog and serves it at `http://localhost:8000` (`/`, `/health`, `/agents`).
+
+## Deployment
+
+### GitHub (recommended)
+1. The repo has a GitHub Action (`.github/workflows/deploy-cloudflare-pages.yml`).
+2. Go to the repo → **Settings → Secrets and variables → Actions**.
+3. Add a **New repository secret**:
+   - Name: `CLOUDFLARE_API_TOKEN`
+   - Value: A token with `Pages:Edit` and `Workers:Edit` permissions (create at https://dash.cloudflare.com/profile/api-tokens).
+4. Push to `main` → it deploys `vitapass-deploy/` to Cloudflare Pages project `vitapass-full-power`.
+   The workflow skips cleanly when the token is missing (so PRs stay mergeable).
+
+### Manual / local deploy (Cloudflare Pages)
+```bash
+export CLOUDFLARE_API_TOKEN=your_token_here
+cd vitapass-deploy
+npx wrangler pages deploy . --project-name=vitapass-full-power
+```
+
+After deploy you can set:
+```js
+window.FORGE_ENDPOINT = "https://<your-project>.pages.dev/forge"
+```
+
+## Integration notes
+
+This tree consolidates the unique work from PRs #1–#4 onto latest `main`:
+
+- **#1** CommunityBuilderAgent (`doge_forge/agents/community_builder.py`)
+- **#2** Expansion notes (`VITAPASS_FULL_EXPANSION.md`) — vNext intent, not all listed files existed on the branch
+- **#3** Self-improver README note (UEFN / MCP / edge stack intent)
+- **#4** Four additional agents, Cloudflare Pages workflow, and `vitapass-deploy/wrangler.toml`
+
+The original PR descriptions referenced `server.py`, `vitapass/index.html`, `uefn_forge/`, and 17 agents. Those files were never committed on any open branch. This integration keeps the real agent code and deploy config, and makes `python launch.py` work for the six agents that actually landed.
 
 Made with Grok + omgawdmadeit1
-
----
-**Self-Improver layer (this PR)**: The ForgeSelfImproverAgent (via /self-improve + propose_improvement) used grok_com_github MCPs to open this branch, document the UEFN orchestrator wiring + deeper real-time MCP polling in UI + edge enhancements, and create the PR. Recursive agent-driven development in action.
-
-See also: server.py (new /self-improve + enhanced /uefn/orchestrate + richer /mcp-events), vitapass/index.html (JS polling + live feed + runUefnOrchestrator), doge_forge/agents/forge_self_improver.py (propose_improvement method), vitapass-deploy/* (edge parity).
